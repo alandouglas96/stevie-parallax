@@ -19,6 +19,7 @@ export default function Home() {
 
     setPosition({ x: mouseX - rekt.x, y: mouseY - rekt.y })
   }
+
   useEffect(() => {
     window.addEventListener('mousemove', handleMove)
     return () => window.removeEventListener('mousemove', handleMove)
@@ -163,19 +164,21 @@ export default function Home() {
         alt="Layer 2"
       />
       <Image
-        src={`${IMAGE_URL}/name.png`}
+        src={`${IMAGE_URL}/stevie_name.png`}
         quality={100}
+        fill={true}
         // Aspect ratio: 2.77
-        width={120 * 2.77}
-        height={120}
+        // width={120 * 2.77}
+        // height={120}
         style={{
+          objectFit: 'cover',
           zIndex: 8,
           transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
-          position: 'absolute',
-          width: `${120 * 2.77}px`,
-          height: `${120}px`,
-          top: '54%',
-          left: '39%',
+          // position: 'absolute',
+          // width: `${120 * 2.77}px`,
+          // height: `${120}px`,
+          top: '10%',
+          // left: '39%',
         }}
         alt="Name"
       />
@@ -193,19 +196,21 @@ export default function Home() {
         alt="Layer 3"
       />
       <Image
-        src={`${IMAGE_URL}/title.png`}
+        src={`${IMAGE_URL}/stevie_title.png`}
         quality={100}
         // Aspect ratio: 2,27
-        width={120 * 2.27}
-        height={120}
+        // width={120 * 2.27}
+        // height={120}
+        fill={true}
         style={{
+          objectFit: 'cover',
           zIndex: 6,
           transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
-          position: 'absolute',
-          width: `${120 * 2.27}px`,
-          height: `${120}px`,
-          top: '41%',
-          left: '41%',
+          // position: 'absolute',
+          // width: `${120 * 2.27}px`,
+          // height: `${120}px`,
+          top: '-4%',
+          // left: '41%',
         }}
         alt="Title"
       />
