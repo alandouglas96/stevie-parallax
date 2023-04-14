@@ -2,14 +2,53 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
+import { FaLinkedinIn, FaInstagram, FaPlay, FaPause } from 'react-icons/fa'
 import styles from './page.module.css'
 
-const IMAGE_URL = `https://alandouglasphotography.s3.eu-central-1.amazonaws.com`
+const IMAGE_URL = 'https://alandouglasphotography.s3.eu-central-1.amazonaws.com'
+const AUDIO_URL =
+  'https://alandouglasphotography.s3.eu-central-1.amazonaws.com/sir_duke.mp3'
+
+const useAudio = (url) => {
+  const [playing, setPlaying] = useState(false)
+
+  const [audio, setAudio] = useState(null)
+
+  useEffect(() => {
+    setAudio(new Audio(url))
+    // only run once on the first render on the client
+  }, [])
+
+  const toggle = () => setPlaying(!playing)
+
+  useEffect(() => {
+    if (audio) {
+      playing ? audio.play() : audio.pause()
+      audio.addEventListener('ended', () => setPlaying(false))
+      return () => {
+        audio.removeEventListener('ended', () => setPlaying(false))
+      }
+    }
+  }, [playing])
+
+  // useEffect(() => {
+  //   if (audio) {
+  //     audio.addEventListener('ended', () => setPlaying(false))
+  //     return () => {
+  //       audio.removeEventListener('ended', () => setPlaying(false))
+  //     }
+  //   }
+  // }, [])
+
+  return [playing, toggle]
+}
 
 export default function Home() {
   const anchorRef = useRef()
 
   const [position, setPosition] = useState({ x: 0, y: 0 })
+  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [playing, toggle] = useAudio(AUDIO_URL)
 
   function handleMove(e) {
     const mouseX = e.clientX
@@ -18,6 +57,7 @@ export default function Home() {
     const rekt = anchorRef.current.getBoundingClientRect()
 
     setPosition({ x: mouseX - rekt.x, y: mouseY - rekt.y })
+    // setMousePosition({ x: mouseX, y: mouseY })
   }
 
   useEffect(() => {
@@ -25,111 +65,18 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMove)
   }, [])
 
-  // if (window.innerWidth <= 450) {
-  //   return (
-  //     <main className={styles.main}>
-  //       <div
-  //         ref={anchorRef}
-  //         style={{
-  //           backgroundColor: 'transparent',
-  //           height: '10px',
-  //           width: '10px',
-  //           zIndex: 1,
-  //           top: '36.1%',
-  //           left: '48.38%',
-  //           position: 'absolute',
-  //         }}
-  //       />
-  //       <Image
-  //         src={layer1}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 10,
-  //         }}
-  //         alt="Layer 1"
-  //       />
-  //       <Image
-  //         src={layer2}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 9,
-  //           transform: `translate(${position.x / 18}px, ${position.y / 18}px)`,
-  //         }}
-  //         alt="Layer 2"
-  //       />
-  //       <Image
-  //         src={name}
-  //         // Aspect ratio: 2.77
-  //         width={120 * 2.77}
-  //         height={120}
-  //         style={{
-  //           zIndex: 8,
-  //           position: 'absolute',
-  //           width: `${120 * 2.77}px`,
-  //           height: `${120}px`,
-  //           top: '52%',
-  //           left: '37%',
-  //         }}
-  //         alt="Name"
-  //       />
-  //       <Image
-  //         src={layer3}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 7,
-  //         }}
-  //         alt="Layer 3"
-  //       />
-  //       <Image
-  //         src={title}
-  //         // Aspect ratio: 2,27
-  //         width={120 * 2.27}
-  //         height={120}
-  //         style={{
-  //           zIndex: 6,
-  //           position: 'absolute',
-  //           width: `${120 * 2.27}px`,
-  //           height: `${120}px`,
-  //           top: '41%',
-  //           left: '44%',
-  //         }}
-  //         alt="Title"
-  //       />
-  //       <Image
-  //         src={layer4}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 5,
-  //         }}
-  //         alt="Layer 4"
-  //       />
-  //       <Image
-  //         src={layer5}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 4,
-  //         }}
-  //         alt="Layer 5"
-  //       />
-  //       <Image
-  //         src={layer6}
-  //         fill={true}
-  //         style={{
-  //           objectFit: 'cover',
-  //           zIndex: 3,
-  //         }}
-  //         alt="Layer 6"
-  //       />
-  //     </main>
-  //   )
-  // } else {
+  useEffect(() => {
+    window.addEventListener('click', toggle)
+    return () => window.removeEventListener('click', toggle)
+  })
+
   return (
     <main className={styles.main}>
+      {!playing ? (
+        <FaPlay className={styles.musicIcon} size={30} />
+      ) : (
+        <FaPause className={styles.musicIcon} size={30} />
+      )}
       <div
         ref={anchorRef}
         style={{
@@ -167,18 +114,11 @@ export default function Home() {
         src={`${IMAGE_URL}/stevie_name.png`}
         quality={100}
         fill={true}
-        // Aspect ratio: 2.77
-        // width={120 * 2.77}
-        // height={120}
         style={{
           objectFit: 'cover',
           zIndex: 8,
           transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
-          // position: 'absolute',
-          // width: `${120 * 2.77}px`,
-          // height: `${120}px`,
           top: '10%',
-          // left: '39%',
         }}
         alt="Name"
       />
@@ -198,19 +138,12 @@ export default function Home() {
       <Image
         src={`${IMAGE_URL}/stevie_title.png`}
         quality={100}
-        // Aspect ratio: 2,27
-        // width={120 * 2.27}
-        // height={120}
         fill={true}
         style={{
           objectFit: 'cover',
           zIndex: 6,
           transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
-          // position: 'absolute',
-          // width: `${120 * 2.27}px`,
-          // height: `${120}px`,
           top: '-4%',
-          // left: '41%',
         }}
         alt="Title"
       />
@@ -247,9 +180,34 @@ export default function Home() {
         }}
         alt="Layer 6"
       />
+      <footer className={styles.footer}>
+        <div className={styles.containerSocial}>
+          <a
+            href="https://www.linkedin.com/in/alan-douglas-aranda/"
+            target="_blank"
+          >
+            <FaLinkedinIn size={30} className={styles.socialIcon} />
+          </a>
+
+          <a href="https://www.instagram.com/alandouglas/" target="_blank">
+            <FaInstagram size={30} className={styles.socialIcon} />
+          </a>
+          <a
+            href="https://www.malt.es/profile/alandouglasaranda1"
+            target="_blank"
+          >
+            <img
+              src="malt_icon.png"
+              alt="Malt Icon"
+              width="30"
+              height="30"
+              className={styles.socialIcon}
+            />
+          </a>
+        </div>
+      </footer>
     </main>
   )
-  // }
 }
 
 /*
