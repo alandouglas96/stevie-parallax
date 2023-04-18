@@ -1,8 +1,9 @@
 'use client'
 
+import Footer from './footer.js'
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { FaLinkedinIn, FaInstagram, FaPlay, FaPause } from 'react-icons/fa'
+import { FaPlay, FaPause } from 'react-icons/fa'
 import styles from './page.module.css'
 
 const IMAGE_URL = 'https://alandouglasphotography.s3.eu-central-1.amazonaws.com'
@@ -31,15 +32,6 @@ const useAudio = (url) => {
     }
   }, [playing])
 
-  // useEffect(() => {
-  //   if (audio) {
-  //     audio.addEventListener('ended', () => setPlaying(false))
-  //     return () => {
-  //       audio.removeEventListener('ended', () => setPlaying(false))
-  //     }
-  //   }
-  // }, [])
-
   return [playing, toggle]
 }
 
@@ -47,7 +39,6 @@ export default function Home() {
   const anchorRef = useRef()
 
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [playing, toggle] = useAudio(AUDIO_URL)
 
   function handleMove(e) {
@@ -57,7 +48,6 @@ export default function Home() {
     const rekt = anchorRef.current.getBoundingClientRect()
 
     setPosition({ x: mouseX - rekt.x, y: mouseY - rekt.y })
-    // setMousePosition({ x: mouseX, y: mouseY })
   }
 
   useEffect(() => {
@@ -180,44 +170,7 @@ export default function Home() {
         }}
         alt="Layer 6"
       />
-      <footer className={styles.footer}>
-        <div className={styles.containerSocial}>
-          <a
-            href="https://www.linkedin.com/in/alan-douglas-aranda/"
-            target="_blank"
-          >
-            <FaLinkedinIn size={30} className={styles.socialIcon} />
-          </a>
-
-          <a href="https://www.instagram.com/alandouglas/" target="_blank">
-            <FaInstagram size={30} className={styles.socialIcon} />
-          </a>
-          <a
-            href="https://www.malt.es/profile/alandouglasaranda1"
-            target="_blank"
-          >
-            <img
-              src="malt_icon.png"
-              alt="Malt Icon"
-              width="30"
-              height="30"
-              className={styles.socialIcon}
-            />
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </main>
   )
 }
-
-/*
-Window height: 648
-Window width: 1207
-
-top: 234
-left: 596
-
-
-Percentage top: 36,1%
-Percentage left: 48,38%
-*/
