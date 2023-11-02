@@ -23,9 +23,9 @@
 
 .socialIcon {
   filter: brightness(0) invert(1);
-  opacity: 60%;
+  transition: all 0.2s ease-in-out;
 }
 
 .socialIcon:hover {
-  opacity: 100%;
+  scale: 1.2;
 }

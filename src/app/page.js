@@ -55,17 +55,17 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMove)
   }, [])
 
-  useEffect(() => {
-    window.addEventListener('click', toggle)
-    return () => window.removeEventListener('click', toggle)
-  })
+  // useEffect(() => {
+  //   window.addEventListener('click', toggle)
+  //   return () => window.removeEventListener('click', toggle)
+  // })
 
   return (
     <main className={styles.main}>
       {!playing ? (
-        <FaPlay className={styles.musicIcon} size={30} />
+        <FaPlay className={styles.musicIcon} onClick={toggle} size={30} />
       ) : (
-        <FaPause className={styles.musicIcon} size={30} />
+        <FaPause className={styles.musicIcon} onClick={toggle} size={30} />
       )}
       <div
         ref={anchorRef}
