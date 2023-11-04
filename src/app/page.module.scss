@@ -1,0 +1,189 @@
+.main {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.musicIcon {
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+  filter: brightness(0) invert(1);
+  position: absolute;
+  z-index: 14;
+  filter: brightness(0) invert(1);
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.musicIcon:hover {
+  scale: 1.2;
+}
+
+.layer2 {
+  animation: mouse2 3s ease-in-out infinite;
+}
+
+.layer3 {
+  animation: mouse3 3s ease-in-out infinite;
+}
+
+.layer4 {
+  animation: mouse4 3s ease-in-out infinite;
+}
+
+.layer5 {
+  animation: mouse5 3s ease-in-out infinite;
+}
+
+.layer6 {
+  animation: mouse6 3s ease-in-out infinite;
+}
+
+.title,
+.name {
+  animation: text 3s ease-in-out infinite;
+}
+
+/* Keyframes that represent a circle animation */
+// $mouseX1: -120px;
+// $mouseX2: 120px;
+// $mouseY1: -80px;
+// $mouseY2: 80px;
+
+$mouseX1: -180px;
+$mouseX2: 180px;
+$mouseY1: -120px;
+$mouseY2: 120px;
+
+$ratio2: 18;
+$ratio3: 12;
+$ratio4: 8;
+$ratio5: 4.5;
+$ratio6: 2;
+$ratioText: 30;
+
+@keyframes text {
+  0% {
+    transform: translate(
+      -(calc($mouseX1 / $ratioText)),
+      calc($mouseY1 / $ratioText)
+    );
+  }
+  25% {
+    transform: translate(
+      -(calc($mouseX2 / $ratioText)),
+      calc($mouseY1 / $ratioText)
+    );
+  }
+  50% {
+    transform: translate(
+      -(calc($mouseX2 / $ratioText)),
+      calc($mouseY2 / $ratioText)
+    );
+  }
+  75% {
+    transform: translate(
+      -(calc($mouseX1 / $ratioText)),
+      calc($mouseY2 / $ratioText)
+    );
+  }
+  100% {
+    transform: translate(
+      -(calc($mouseX1 / $ratioText)),
+      calc($mouseY1 / $ratioText)
+    );
+  }
+}
+
+@keyframes mouse6 {
+  0% {
+    transform: translate(calc($mouseX1 / $ratio6), calc($mouseY1 / $ratio6));
+  }
+  25% {
+    transform: translate(calc($mouseX2 / $ratio6), calc($mouseY1 / $ratio6));
+  }
+  50% {
+    transform: translate(calc($mouseX2 / $ratio6), calc($mouseY2 / $ratio6));
+  }
+  75% {
+    transform: translate(calc($mouseX1 / $ratio6), calc($mouseY2 / $ratio6));
+  }
+  100% {
+    transform: translate(calc($mouseX1 / $ratio6), calc($mouseY1 / $ratio6));
+  }
+}
+
+@keyframes mouse5 {
+  0% {
+    transform: translate(calc($mouseX1 / $ratio5), calc($mouseY1 / $ratio5));
+  }
+  25% {
+    transform: translate(calc($mouseX2 / $ratio5), calc($mouseY1 / $ratio5));
+  }
+  50% {
+    transform: translate(calc($mouseX2 / $ratio5), calc($mouseY2 / $ratio5));
+  }
+  75% {
+    transform: translate(calc($mouseX1 / $ratio5), calc($mouseY2 / $ratio5));
+  }
+  100% {
+    transform: translate(calc($mouseX1 / $ratio5), calc($mouseY1 / $ratio5));
+  }
+}
+
+@keyframes mouse4 {
+  0% {
+    transform: translate(calc($mouseX1 / $ratio4), calc($mouseY1 / $ratio4));
+  }
+  25% {
+    transform: translate(calc($mouseX2 / $ratio4), calc($mouseY1 / $ratio4));
+  }
+  50% {
+    transform: translate(calc($mouseX2 / $ratio4), calc($mouseY2 / $ratio4));
+  }
+  75% {
+    transform: translate(calc($mouseX1 / $ratio4), calc($mouseY2 / $ratio4));
+  }
+  100% {
+    transform: translate(calc($mouseX1 / $ratio4), calc($mouseY1 / $ratio4));
+  }
+}
+
+@keyframes mouse3 {
+  0% {
+    transform: translate(calc($mouseX1 / $ratio3), calc($mouseY1 / $ratio3));
+  }
+  25% {
+    transform: translate(calc($mouseX2 / $ratio3), calc($mouseY1 / $ratio3));
+  }
+  50% {
+    transform: translate(calc($mouseX2 / $ratio3), calc($mouseY2 / $ratio3));
+  }
+  75% {
+    transform: translate(calc($mouseX1 / $ratio3), calc($mouseY2 / $ratio3));
+  }
+  100% {
+    transform: translate(calc($mouseX1 / $ratio3), calc($mouseY1 / $ratio3));
+  }
+}
+
+@keyframes mouse2 {
+  0% {
+    transform: translate(calc($mouseX1 / $ratio2), calc($mouseY1 / $ratio2));
+  }
+  25% {
+    transform: translate(calc($mouseX2 / $ratio2), calc($mouseY1 / $ratio2));
+  }
+  50% {
+    transform: translate(calc($mouseX2 / $ratio2), calc($mouseY2 / $ratio2));
+  }
+  75% {
+    transform: translate(calc($mouseX1 / $ratio2), calc($mouseY2 / $ratio2));
+  }
+  100% {
+    transform: translate(calc($mouseX1 / $ratio2), calc($mouseY1 / $ratio2));
+  }
+}

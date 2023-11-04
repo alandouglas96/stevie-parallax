@@ -1,10 +1,12 @@
 'use client'
 
-import Footer from './footer.js'
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
+
 import { FaPlay, FaPause } from 'react-icons/fa'
-import styles from './page.module.css'
+import Footer from './footer.js'
+
+import styles from './page.module.scss'
 
 const IMAGE_URL = 'https://alandouglasphotography.s3.eu-central-1.amazonaws.com'
 const AUDIO_URL =
@@ -60,6 +62,8 @@ export default function Home() {
   //   return () => window.removeEventListener('click', toggle)
   // })
 
+  console.log('POSITION X AND Y', position.x, position.y)
+
   return (
     <main className={styles.main}>
       {!playing ? (
@@ -96,9 +100,10 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 9,
-          transform: `translate(${position.x / 18}px, ${position.y / 18}px)`,
+          // transform: `translate(${position.x / 18}px, ${position.y / 18}px)`,
         }}
         alt="Layer 2"
+        className={styles.layer2}
       />
       <Image
         src={`${IMAGE_URL}/stevie_name.png`}
@@ -107,10 +112,11 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 8,
-          transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
+          // transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
           top: '10%',
         }}
         alt="Name"
+        className={styles.name}
       />
       <Image
         src={`${IMAGE_URL}/layer_3.png`}
@@ -119,11 +125,12 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 7,
-          transform: `translate(${position.x / 12.5}px, ${
-            position.y / 12.5
-          }px)`,
+          // transform: `translate(${position.x / 12.5}px, ${
+          //   position.y / 12.5
+          // }px)`,
         }}
         alt="Layer 3"
+        className={styles.layer3}
       />
       <Image
         src={`${IMAGE_URL}/stevie_title.png`}
@@ -132,10 +139,11 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 6,
-          transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
+          // transform: `translate(${-(position.x / 30)}px, ${position.y / 30}px)`,
           top: '-4%',
         }}
         alt="Title"
+        className={styles.title}
       />
       <Image
         src={`${IMAGE_URL}/layer_4.png`}
@@ -144,9 +152,10 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 5,
-          transform: `translate(${position.x / 8}px, ${position.y / 8}px)`,
+          // transform: `translate(${position.x / 8}px, ${position.y / 8}px)`,
         }}
         alt="Layer 4"
+        className={styles.layer4}
       />
       <Image
         src={`${IMAGE_URL}/layer_5.png`}
@@ -155,9 +164,10 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 4,
-          transform: `translate(${position.x / 4.5}px, ${position.y / 4.5}px)`,
+          // transform: `translate(${position.x / 4.5}px, ${position.y / 4.5}px)`,
         }}
         alt="Layer 5"
+        className={styles.layer5}
       />
       <Image
         src={`${IMAGE_URL}/layer_6.png`}
@@ -166,9 +176,10 @@ export default function Home() {
         style={{
           objectFit: 'cover',
           zIndex: 3,
-          transform: `translate(${position.x / 2}px, ${position.y / 2}px)`,
+          // transform: `translate(${position.x / 2}px, ${position.y / 2}px)`,
         }}
         alt="Layer 6"
+        className={styles.layer6}
       />
       <Footer />
     </main>
