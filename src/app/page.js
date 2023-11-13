@@ -103,6 +103,7 @@ export default function Home() {
       />
       <Image
         // src={`${IMAGE_URL}/layer_1.png`}
+        priority={true}
         src={IMAGE_SRC.LAYER_1}
         quality={100}
         fill={true}
@@ -114,6 +115,7 @@ export default function Home() {
       />
       <Image
         // src={`${IMAGE_URL}/layer_2.png`}
+        priority={true}
         src={IMAGE_SRC.LAYER_2}
         quality={100}
         fill={true}
@@ -129,6 +131,7 @@ export default function Home() {
       />
       <Image
         // src={`${IMAGE_URL}/stevie_name.png`}
+        priority={true}
         src={IMAGE_SRC.NAME}
         quality={100}
         fill={true}
@@ -145,6 +148,7 @@ export default function Home() {
       />
       <Image
         // src={`${IMAGE_URL}/layer_3.png`}
+        priority={true}
         src={IMAGE_SRC.LAYER_3}
         quality={100}
         fill={true}
@@ -161,6 +165,7 @@ export default function Home() {
       <Image
         // src={`${IMAGE_URL}/stevie_title.png`}
         src={IMAGE_SRC.TITLE}
+        priority={true}
         quality={100}
         fill={true}
         style={{
@@ -177,6 +182,7 @@ export default function Home() {
       <Image
         // src={`${IMAGE_URL}/layer_4.png`}
         src={IMAGE_SRC.LAYER_4}
+        priority={true}
         quality={100}
         fill={true}
         style={{
@@ -192,6 +198,7 @@ export default function Home() {
       <Image
         // src={`${IMAGE_URL}/layer_5.png`}
         src={IMAGE_SRC.LAYER_5}
+        priority={true}
         quality={100}
         fill={true}
         style={{
@@ -207,6 +214,7 @@ export default function Home() {
       <Image
         // src={`${IMAGE_URL}/layer_6.png`}
         src={IMAGE_SRC.LAYER_6}
+        priority={true}
         quality={100}
         fill={true}
         style={{
